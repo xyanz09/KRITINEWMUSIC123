@@ -2,7 +2,6 @@
 name = "VIPMUSIC"
 version = "0.1.0"
 description = "Telegram Music Bot"
-readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "pyromod",
@@ -15,7 +14,7 @@ dependencies = [
     "gitpython",
     "hachoir",
     "heroku3",
-    "httpx[http2]",
+    "httpx[http2] == 0.27.2",
     "lyricsgenius",
     "motor",
     "wget",
@@ -25,8 +24,8 @@ dependencies = [
     "pytube",
     "pykeyboard",
     "unidecode",
-    "py-tgcalls==1.2.9",
-    "ntgcalls==1.1.2",
+    "py-tgcalls == 1.2.9",
+    "ntgcalls == 1.1.2",
     "python-dotenv",
     "pyyaml",
     "requests",
@@ -40,8 +39,7 @@ dependencies = [
     "yt-dlp",
     "youtube-search-python",
     "youtube-search",
-    "pyrogram",
-    "https://github.com/KurimuzonAkuma/pyrogram/archive/v2.1.23.zip"
+    "pyrogram @ https://github.com/KurimuzonAkuma/pyrogram/archive/v2.1.23.zip"
 ]
 
 [build-system]
