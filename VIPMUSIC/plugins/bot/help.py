@@ -24,8 +24,8 @@ from VIPMUSIC.utils.inline.help import private_help_panel
 ### Command
 HELP_COMMAND = get_command("HELP_COMMAND")
 
-COLUMN_SIZE = 4  # number of buttons height
-NUM_COLUMNS = 3  # number of buttons width
+COLUMN_SIZE = 4  # number of button height
+NUM_COLUMNS = 3  # number of button width
 
 
 class EqInlineKeyboardButton(InlineKeyboardButton):
@@ -50,8 +50,7 @@ def paginate_modules(page_n, module_dict, prefix, chat=None, close: bool = False
                     ),
                 )
                 for x in module_dict.values()
-            ],
-            key=lambda x: x.text.lower(), # Yeh line A to Z sort karegi
+            ]
         )
     else:
         modules = sorted(
@@ -63,8 +62,7 @@ def paginate_modules(page_n, module_dict, prefix, chat=None, close: bool = False
                     ),
                 )
                 for x in module_dict.values()
-            ],
-            key=lambda x: x.text.lower(), # Yeh line A to Z sort karegi
+            ]
         )
 
     pairs = [modules[i : i + NUM_COLUMNS] for i in range(0, len(modules), NUM_COLUMNS)]
@@ -73,7 +71,30 @@ def paginate_modules(page_n, module_dict, prefix, chat=None, close: bool = False
     modulo_page = page_n % max_num_pages
 
     if len(pairs) > COLUMN_SIZE:
-        pairs = pairs[modulo_page * COLUMN_SIZE : COLUMN_SIZE * (modulo_page + 1)] + [
+        current_pairs = pairs[modulo_page * COLUMN_SIZE : COLUMN_SIZE * (modulo_page + 1)]
+
+        updated_pairs = []
+        for row in current_pairs:
+            updated_row = []
+            for btn in row:
+                if not chat:
+                    new_btn = EqInlineKeyboardButton(
+                        btn.text,
+                        callback_data="{}_module({},{})".format(
+                            prefix, btn.text.lower(), modulo_page
+                        ),
+                    )
+                else:
+                    new_btn = EqInlineKeyboardButton(
+                        btn.text,
+                        callback_data="{}_module({},{},{})".format(
+                            prefix, chat, btn.text.lower(), modulo_page
+                        ),
+                    )
+                updated_row.append(new_btn)
+            updated_pairs.append(updated_row)
+
+        updated_pairs.append(
             (
                 EqInlineKeyboardButton(
                     "❮",
@@ -91,7 +112,8 @@ def paginate_modules(page_n, module_dict, prefix, chat=None, close: bool = False
                     callback_data="{}_next({})".format(prefix, modulo_page + 1),
                 ),
             )
-        ]
+        )
+        return updated_pairs
     else:
         pairs.append(
             [
@@ -101,8 +123,7 @@ def paginate_modules(page_n, module_dict, prefix, chat=None, close: bool = False
                 ),
             ]
         )
-
-    return pairs
+        return pairs
 
 
 @app.on_message(filters.command(HELP_COMMAND) & filters.private & ~BANNED_USERS)
@@ -136,15 +157,12 @@ async def helper_private(
             paginate_modules(0, HELPABLE, "help", close=True)
         )
         if START_IMG_URL:
-
             await update.reply_photo(
                 photo=START_IMG_URL,
                 caption=_["help_1"],
                 reply_markup=keyboard,
             )
-
         else:
-
             await update.reply_text(
                 text=_["help_1"],
                 reply_markup=keyboard,
@@ -202,12 +220,12 @@ async def help_button(client, query):
         )
 
     elif home_match:
-        # Note: home_text_pm and out variables should be defined in your config/strings
-        # If not defined, this part might need adjustment
         await app.send_message(
             query.from_user.id,
-            text=_["help_1"], 
-            reply_markup=InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help")),
+            text=top_text,
+            reply_markup=InlineKeyboardMarkup(
+                paginate_modules(0, HELPABLE, "help")
+            ),
         )
         await query.message.delete()
 
@@ -243,7 +261,6 @@ async def help_button(client, query):
 
     elif create_match:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
-
         await query.message.edit(
             text=top_text,
             reply_markup=keyboard,
