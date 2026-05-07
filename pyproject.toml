@@ -1,9 +1,9 @@
 [project]
 name = "VIPMUSIC"
 version = "0.1.0"
-description = "Telegram Bot optimized for Python 3.13"
+description = "Telegram Music Bot"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.10"
 dependencies = [
     "pyromod",
     "openai",
@@ -15,18 +15,18 @@ dependencies = [
     "gitpython",
     "hachoir",
     "heroku3",
-    "httpx[http2] == 0.27.2",
+    "httpx[http2]",
     "lyricsgenius",
     "motor",
     "wget",
-    "pillow >= 10.3.0", # Python 3.13 ke liye Pillow ka latest hona zaroori hai
-    "pymongo >= 4.0.0", # Pymongo 3.12 Python 3.13 par crash ho sakta hai
+    "pillow",
+    "pymongo",
     "psutil",
     "pytube",
     "pykeyboard",
     "unidecode",
-    "py-tgcalls == 1.2.9",
-    "ntgcalls == 1.1.2",
+    "py-tgcalls==1.2.9",
+    "ntgcalls==1.1.2",
     "python-dotenv",
     "pyyaml",
     "requests",
@@ -34,14 +34,14 @@ dependencies = [
     "spotipy",
     "tgcrypto",
     "urllib3",
-    "uvloop >= 0.21.0rc1; platform_system != 'Windows'", # 3.13 support ke liye latest uvloop
+    "uvloop; platform_system != 'Windows'",
     "flask",
-    "gunicorn >= 23.0.0", # Latest gunicorn for 3.13 stability
+    "gunicorn",
     "yt-dlp",
     "youtube-search-python",
     "youtube-search",
-    "pyrogram", 
-    "https://github.com/KurimuzonAkuma/pyrogram/archive/v2.1.23.zip",
+    "pyrogram",
+    "https://github.com/KurimuzonAkuma/pyrogram/archive/v2.1.23.zip"
 ]
 
 [build-system]
