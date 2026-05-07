@@ -57,30 +57,29 @@ class EqInlineKeyboardButton(InlineKeyboardButton):
 
 
 def paginate_modules(page_n, module_dict, prefix, chat=None, close: bool = False):
+    # ᴘᴀʜʟᴇ ꜱᴀʀᴇ ᴍᴏᴅᴜʟᴇ ɴᴀᴍᴇ ᴋᴏ ᴏʀɪɢɪɴᴀʟ ɴᴀᴍᴇ ꜱᴇ ꜱᴏʀᴛ ᴋᴀʀᴏ A ᴛᴏ Z
+    sorted_modules = sorted(module_dict.values(), key=lambda x: x.__MODULE__.lower())
+
     if not chat:
-        modules = sorted(
-            [
-                EqInlineKeyboardButton(
-                    to_small_caps(x.__MODULE__),
-                    callback_data="{}_module({},{})".format(
-                        prefix, x.__MODULE__.lower(), page_n
-                    ),
-                )
-                for x in module_dict.values()
-            ]
-        )
+        modules = [
+            EqInlineKeyboardButton(
+                to_small_caps(x.__MODULE__),
+                callback_data="{}_module({},{})".format(
+                    prefix, x.__MODULE__.lower(), page_n
+                ),
+            )
+            for x in sorted_modules
+        ]
     else:
-        modules = sorted(
-            [
-                EqInlineKeyboardButton(
-                    to_small_caps(x.__MODULE__),
-                    callback_data="{}_module({},{},{})".format(
-                        prefix, chat, x.__MODULE__.lower(), page_n
-                    ),
-                )
-                for x in module_dict.values()
-            ]
-        )
+        modules = [
+            EqInlineKeyboardButton(
+                to_small_caps(x.__MODULE__),
+                callback_data="{}_module({},{},{})".format(
+                    prefix, chat, x.__MODULE__.lower(), page_n
+                ),
+            )
+            for x in sorted_modules
+        ]
 
     pairs = [modules[i : i + NUM_COLUMNS] for i in range(0, len(modules), NUM_COLUMNS)]
 
@@ -94,18 +93,25 @@ def paginate_modules(page_n, module_dict, prefix, chat=None, close: bool = False
         for row in current_pairs:
             updated_row = []
             for btn in row:
+                # ᴄᴀʟʟʙᴀᴄᴋ_ᴅᴀᴛᴀ ᴍᴇɪɴ ᴄᴜʀʀᴇɴᴛ ᴘᴀɢᴇ ɴᴜᴍʙᴇʀ ᴀᴘᴅᴀᴛᴇ ᴋᴀʀᴏ
+                original_module = re.search(r"_module\((.+?),", btn.callback_data)
+                if original_module:
+                    mod_name = original_module.group(1)
+                else:
+                    mod_name = btn.text.lower()
+
                 if not chat:
                     new_btn = EqInlineKeyboardButton(
                         btn.text,
                         callback_data="{}_module({},{})".format(
-                            prefix, btn.text.lower(), modulo_page
+                            prefix, mod_name, modulo_page
                         ),
                     )
                 else:
                     new_btn = EqInlineKeyboardButton(
                         btn.text,
                         callback_data="{}_module({},{},{})".format(
-                            prefix, chat, btn.text.lower(), modulo_page
+                            prefix, chat, mod_name, modulo_page
                         ),
                     )
                 updated_row.append(new_btn)
