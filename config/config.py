@@ -56,9 +56,9 @@ LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "-1002223516578"))
 # 🌐 SOCIALS & REPO LINKS
 # ================================================================
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/about_deadly_venom")
-SUPPORT_GROUP = getenv("BOYS_STATUS_GROUP", "https://t.me/+wlfVE1P8C9QzOGI9")
-SUPPORT_CHAT = getenv("SUPPORT_GROUP", "https://t.me/+wlfVE1P8C9QzOGI9")
-GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com/lll-DEADLY-VENOM-lll/VIPMUSIC")
+SUPPORT_GROUP = getenv("BOYS_STATUS_GROUP", "https://t.me/+Iol40Zc_6bRlZmNl")
+SUPPORT_CHAT = getenv("SUPPORT_GROUP", "https://t.me/+Iol40Zc_6bRlZmNl")
+GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com/KIRU-OP/VIP-MUSIC")
 PRIVACY_LINK = getenv("PRIVACY_LINK", "https://telegra.ph/Privacy-Policy-for-VIPMUSIC-08-30")
 
 # ================================================================
@@ -104,21 +104,21 @@ STRING5 = getenv("STRING_SESSION5", None)
 # ================================================================
 # 🖼️ VISUALS (Images)
 # ================================================================
-BASE_IMG = "https://i.ibb.co/G3bVD6qb/x.jpg"
+BASE_IMG = "https://envs.sh/BjZ.jpg"
 
 START_IMG_URL = getenv("START_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-PING_IMG_URL = getenv("PING_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-PLAYLIST_IMG_URL = getenv("PLAYLIST_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-GLOBAL_IMG_URL = getenv("GLOBAL_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-STATS_IMG_URL = getenv("STATS_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-TELEGRAM_AUDIO_URL = getenv("TELEGRAM_AUDIO_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-TELEGRAM_VIDEO_URL = getenv("TELEGRAM_VIDEO_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
+PING_IMG_URL = getenv("PING_IMG_URL", "https://envs.sh/BjZ.jpg")
+PLAYLIST_IMG_URL = getenv("PLAYLIST_IMG_URL", "https://envs.sh/BjZ.jpg")
+GLOBAL_IMG_URL = getenv("GLOBAL_IMG_URL", "https://envs.sh/BjZ.jpg")
+STATS_IMG_URL = getenv("STATS_IMG_URL", "https://envs.sh/BjZ.jpg")
+TELEGRAM_AUDIO_URL = getenv("TELEGRAM_AUDIO_URL", "https://envs.sh/BjZ.jpg")
+TELEGRAM_VIDEO_URL = getenv("TELEGRAM_VIDEO_URL", "https://envs.sh/BjZ.jpg")
 STREAM_IMG_URL = getenv("STREAM_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-SOUNCLOUD_IMG_URL = getenv("SOUNCLOUD_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-YOUTUBE_IMG_URL = getenv("YOUTUBE_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-SPOTIFY_ARTIST_IMG_URL = getenv("SPOTIFY_ARTIST_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-SPOTIFY_ALBUM_IMG_URL = getenv("SPOTIFY_ALBUM_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
-SPOTIFY_PLAYLIST_IMG_URL = getenv("SPOTIFY_PLAYLIST_IMG_URL", "https://i.ibb.co/MyN2zmSC/x.jpg")
+SOUNCLOUD_IMG_URL = getenv("SOUNCLOUD_IMG_URL", "https://envs.sh/BjZ.jpg")
+YOUTUBE_IMG_URL = getenv("YOUTUBE_IMG_URL", "https://envs.sh/BjZ.jpg")
+SPOTIFY_ARTIST_IMG_URL = getenv("SPOTIFY_ARTIST_IMG_URL", "https://envs.sh/BjZ.jpg")
+SPOTIFY_ALBUM_IMG_URL = getenv("SPOTIFY_ALBUM_IMG_URL", "https://envs.sh/BjZ.jpg")
+SPOTIFY_PLAYLIST_IMG_URL = getenv("SPOTIFY_PLAYLIST_IMG_URL", "https://envs.sh/BjZ.jpg")
 
 # ================================================================
 # 🛠️ INTERNAL SYSTEM (Don't Touch)
