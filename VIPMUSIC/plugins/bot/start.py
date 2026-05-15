@@ -14,7 +14,6 @@ from pyrogram import filters
 from pyrogram.enums import ChatType, ParseMode
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtubesearchpython.__future__ import VideosSearch
-from pyrogram.errors import RPCError
 
 import config
 from config import BANNED_USERS, START_IMG_URL
@@ -37,8 +36,7 @@ from VIPMUSIC.utils.database import (
 from VIPMUSIC.utils.decorators.language import LanguageStart
 from VIPMUSIC.utils.formatters import get_readable_time
 from VIPMUSIC.utils.functions import MARKDOWN, WELCOMEHELP
-# CHANGED: Removed alive_panel from imports as it doesn't exist
-from VIPMUSIC.utils.inline import private_panel, start_pannel
+from VIPMUSIC.utils.inline import alive_panel, private_panel, start_pannel
 
 from .help import paginate_modules
 
@@ -157,13 +155,10 @@ async def start_comm(client, message: Message, _):
                 sender_id = message.from_user.id
                 sender_mention = message.from_user.mention
                 sender_name = message.from_user.first_name
-                try:
-                    await app.send_message(
-                        config.LOG_GROUP_ID,
-                        f"{message.from_user.mention} ʜᴀs ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <code>sᴜᴅᴏʟɪsᴛ </code>\n\n**ᴜsᴇʀ ɪᴅ :** {sender_id}\n**ᴜsᴇʀ ɴᴀᴍᴇ:** {sender_name}",
-                    )
-                except Exception:
-                    pass
+                return await app.send_message(
+                    config.LOG_GROUP_ID,
+                    f"{message.from_user.mention} ʜᴀs ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ <code>sᴜᴅᴏʟɪsᴛ </code>\n\n**ᴜsᴇʀ ɪᴅ :** {sender_id}\n**ᴜsᴇʀ ɴᴀᴍᴇ:** {sender_name}",
+                )
             return
         if name[0:3] == "lyr":
             query = (str(name)).replace("lyrics_", "", 1)
@@ -224,13 +219,10 @@ async def start_comm(client, message: Message, _):
             if await is_on_off(config.LOG):
                 sender_id = message.from_user.id
                 sender_name = message.from_user.first_name
-                try:
-                    await app.send_message(
-                        config.LOG_GROUP_ID,
-                        f"{message.from_user.mention} ʜᴀs ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ<code> ᴠɪᴅᴇᴏ ɪɴғᴏʀᴍᴀᴛɪᴏɴ </code>\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀ ɴᴀᴍᴇ** {sender_name}",
-                    )
-                except Exception:
-                    pass
+                return await app.send_message(
+                    config.LOG_GROUP_ID,
+                    f"{message.from_user.mention} ʜᴀs ᴊᴜsᴛ sᴛᴀʀᴛᴇᴅ ʙᴏᴛ ᴛᴏ ᴄʜᴇᴄᴋ<code> ᴠɪᴅᴇᴏ ɪɴғᴏʀᴍᴀᴛɪᴏɴ </code>\n\n**ᴜsᴇʀ ɪᴅ:** {sender_id}\n**ᴜsᴇʀ ɴᴀᴍᴇ** {sender_name}",
+                )
     else:
         out = private_panel(_)
         await message.reply_photo(
@@ -241,20 +233,16 @@ async def start_comm(client, message: Message, _):
         if await is_on_off(config.LOG):
             sender_id = message.from_user.id
             sender_name = message.from_user.first_name
-            try:
-                await app.send_message(
-                    config.LOG_GROUP_ID,
-                    f"{message.from_user.mention} ʜᴀs sᴛᴀʀᴛᴇᴅ ʙᴏᴛ. \n\n**ᴜsᴇʀ ɪᴅ :** {sender_id}\n**ᴜsᴇʀ ɴᴀᴍᴇ:** {sender_name}",
-                )
-            except Exception:
-                pass
+            return await app.send_message(
+                config.LOG_GROUP_ID,
+                f"{message.from_user.mention} ʜᴀs sᴛᴀʀᴛᴇᴅ ʙᴏᴛ. \n\n**ᴜsᴇʀ ɪᴅ :** {sender_id}\n**ᴜsᴇʀ ɴᴀᴍᴇ:** {sender_name}",
+            )
 
 
 @app.on_message(filters.command(["start"]) & filters.group & ~BANNED_USERS)
 @LanguageStart
 async def testbot(client, message: Message, _):
-    # CHANGED: Changed alive_panel to start_pannel
-    out = start_pannel(_)
+    out = alive_panel(_)
     uptime = int(time.time() - _boot_)
     chat_id = message.chat.id
     if config.START_IMG_URL:
@@ -318,6 +306,7 @@ async def welcome(client, message: Message):
                 )
             return
         except:
+
             return
 
 
